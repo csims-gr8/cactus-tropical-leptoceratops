@@ -23,7 +23,8 @@ const sqlite3 = require("sqlite3").verbose();
 const { open } = require("sqlite");
 
 let db;
-open({ filename: dbFile, driver: sqlite3.Database }).then(db => {
+open({ filename: dbFile, driver: sqlite3.Database }).then(newDb => {
+  db = newDb;
   // if ./.data/sqlite.db does not exist, create it, otherwise print records to console
   db.serialize(() => {
     if (!exists) {
@@ -55,9 +56,7 @@ app.get("/", (request, response) => {
 
 // endpoint to get all the jobs in the database
 app.get("/jobs", async (request, response) => {
-  console.log(handlers);
   const jobsData = await handlers.getJobs(db);
-  console.log(jobsData);
   response.send(JSON.stringify(jobsData));
 });
 

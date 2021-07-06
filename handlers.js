@@ -1,12 +1,13 @@
-const getJobs = async (db) => {
-  console.log(db)
-    const result = await db.all("SELECT * from Jobs", []);
-  console.log(result)
-    if (result.error) {
-      return result.error;
-    }
-  
-    return JSON.stringify(result.rows);
+const getJobs = async db => {
+  if (!db) {
+    return { error: "no database!" };
+  }
+  const result = await db.all("SELECT * from Jobs", []);
+  if (result.error) {
+    return { error: result.error };
+  }
+
+  return result;
 };
 
 module.exports = {
