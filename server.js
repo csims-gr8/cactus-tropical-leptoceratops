@@ -50,7 +50,8 @@ db.serialize(() => {
 
 app.get("/", (request, response) => {
   
-})
+  response.sendFile(__dirname + "/views/index.html");
+});
 
 // endpoint to get all the jobs in the database
 app.get("/jobs", (request, response) => {
