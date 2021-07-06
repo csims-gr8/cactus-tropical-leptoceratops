@@ -1,6 +1,7 @@
 const getJobs = async (db) => {
-  
-    const result = await db.all("SELECT * from Jobs");
+  console.log(db)
+    const result = await db.all("SELECT * from Jobs", []);
+  console.log(result)
     if (result.error) {
       return result.error;
     }
