@@ -60,6 +60,19 @@ app.get("/jobs", async (request, response) => {
   response.send(JSON.stringify(jobsData));
 });
 
+app.post("/jobs", async (request, response) => {
+  const newJob = {
+    title: request.body.title,
+    description: request.body.description,
+    location: request.body.location
+  }
+  db.collection('job')
+  .add('newJob')
+  .then(res => {
+    
+  })
+})
+
 // helper function that prevents html/css/script malice
 const cleanseString = function(string) {
   return string.replace(/</g, "&lt;").replace(/>/g, "&gt;");
