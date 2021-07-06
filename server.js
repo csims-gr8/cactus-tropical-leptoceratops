@@ -25,76 +25,40 @@ const db = new sqlite3.Database(dbFile);
 db.serialize(() => {
   if (!exists) {
     db.run(
-      "CREATE TABLE Dreams (id INTEGER PRIMARY KEY AUTOINCREMENT, dream TEXT)"
+      "CREATE TABLE Jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, location TEXT)"
     );
-    console.log("New table Dreams created!");
+    console.log("New table Jobs created!");
 
-    // insert default dreams
+    // insert starter jobs
     db.serialize(() => {
       db.run(
-        'INSERT INTO Dreams (dream) VALUES ("Find and count some sheep"), ("Climb a really tall mountain"), ("Wash the dishes")'
+        'INSERT INTO Jobs (title, description, location) VALUES ("Software Engineer", "Come write some code with us!", "Yardley, PA"), ("Product Manager", "Develop our product roadmap.", "Yardley, PA"), ("Sales Engineer", "Focus on the technical needs of our next customers.", "Yardley, PA")'
       );
     });
+    
+    jobsExist = true;
   } else {
-    console.log('Database "Dreams" ready to go!');
-    db.each("SELECT * from Dreams", (err, row) => {
+    console.log('Database "Jobs" ready to go!');
+    db.each("SELECT * from Jobs", (err, row) => {
       if (row) {
-        console.log(`record: ${row.dream}`);
+        console.log(`record: ${row.title}`);
       }
     });
   }
 });
 
 
-// endpoint to get all the dreams in the database
-app.get("/getDreams", (request, response) => {
-  db.all("SELECT * from Dreams", (err, rows) => {
+app.get("/", (request, response) => {
+  
+})
+
+// endpoint to get all the jobs in the database
+app.get("/jobs", (request, response) => {
+  db.all("SELECT * from Jobs", (err, rows) => {
     response.send(JSON.stringify(rows));
   });
 });
 
-// endpoint to add a dream to the database
-app.post("/addDream", (request, response) => {
-  console.log(`add to dreams ${request.body.dream}`);
-
-  // DISALLOW_WRITE is an ENV variable that gets reset for new projects
-  // so they can write to the database
-  if (!process.env.DISALLOW_WRITE) {
-    const cleansedDream = cleanseString(request.body.dream);
-    db.run(`INSERT INTO Dreams (dream) VALUES (?)`, cleansedDream, error => {
-      if (error) {
-        response.send({ message: "error!" });
-      } else {
-        response.send({ message: "success" });
-      }
-    });
-  }
-});
-
-// endpoint to clear dreams from the database
-app.get("/clearDreams", (request, response) => {
-  // DISALLOW_WRITE is an ENV variable that gets reset for new projects so you can write to the database
-  if (!process.env.DISALLOW_WRITE) {
-    db.each(
-      "SELECT * from Dreams",
-      (err, row) => {
-        console.log("row", row);
-        db.run(`DELETE FROM Dreams WHERE ID=?`, row.id, error => {
-          if (row) {
-            console.log(`deleted row ${row.id}`);
-          }
-        });
-      },
-      err => {
-        if (err) {
-          response.send({ message: "error!" });
-        } else {
-          response.send({ message: "success" });
-        }
-      }
-    );
-  }
-});
 
 // helper function that prevents html/css/script malice
 const cleanseString = function(string) {
