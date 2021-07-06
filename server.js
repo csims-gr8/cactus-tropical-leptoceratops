@@ -60,22 +60,22 @@ app.get("/jobs", async (request, response) => {
   response.send(JSON.stringify(jobsData));
 });
 
-app.post("/jobs", async (request, response) => {
-  const newJob = {
-    title: request.body.title,
-    description: request.body.description,
-    location: request.body.location
-  }
-  db.run(`INSERT INTO jobs(title, description, location) VALUES(?)`, function(error) {
-  if error {
-    return console.log(error)
-    }
-  }); 
+// app.post("/jobs", async (request, response) => {
+//   const newJob = {
+//     title: request.body.title,
+//     description: request.body.description,
+//     location: request.body.location
+//   }
+//   db.run(`INSERT INTO jobs(title, description, location) VALUES(?)`, function(error) {
+//   if error {
+//     return console.log(error)
+//     }
+//   }); 
   
-  const result = {success: true};
-  response.send(JSON.stringify(result))
-  })
-})
+//   const result = {success: true};
+//   response.send(JSON.stringify(result))
+//   })
+// })
 
 // helper function that prevents html/css/script malice
 const cleanseString = function(string) {

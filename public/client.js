@@ -16,10 +16,14 @@ fetch("/jobs", {})
     });
   });
 
-// a helper function that creates a list item for a given dream
+// a helper function that creates a list item for a given job
 const appendNewJob = (label, description) => {
   // TODO Do something with the description
   const newListItem = document.createElement("li");
+  const jobDescription = document.createElement("div");
   newListItem.innerText = label;
+  jobDescription.innerText = description;
   jobsList.appendChild(newListItem);
+  jobsList.appendChild(jobDescription);
 };
+
