@@ -66,10 +66,14 @@ app.post("/jobs", async (request, response) => {
     description: request.body.description,
     location: request.body.location
   }
-  db.collection('job')
-  .add('newJob')
-  .then(res => {
-    
+  db.run(`INSERT INTO jobs(title, description, location) VALUES(?)`, function(error) {
+  if error {
+    return console.log(error)
+    }
+  }); 
+  
+  const result = {success: true};
+  response.send(JSON.stringify(result))
   })
 })
 
