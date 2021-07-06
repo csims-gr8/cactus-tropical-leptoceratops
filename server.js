@@ -37,7 +37,6 @@ db.serialize(() => {
       );
     });
     
-    jobsExist = true;
   } else {
     console.log('Database "Jobs" ready to go!');
     db.each("SELECT * from Jobs", (err, row) => {
@@ -50,16 +49,15 @@ db.serialize(() => {
 
 
 app.get("/", (request, response) => {
-  
   response.sendFile(__dirname + "/views/index.html");
 });
 
 // endpoint to get all the jobs in the database
-app.get("/jobs", (request, response) => {
-  handlers.get 
-  db.all("SELECT * from Jobs", (err, rows) => {
-    response.send(JSON.stringify(rows));
-  });
+app.get("/jobs", async (request, response) => {
+  console.log(handlers);
+  const jobsData = await handlers.getJobs(db);
+  console.log(jobsData);
+  response.send(JSON.stringify(jobsData))
 });
 
 

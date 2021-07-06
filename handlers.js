@@ -1,9 +1,13 @@
-const getJobs = (db) => {
-    db.all("SELECT * from Jobs", (err, rows) => {
-      return JSON.stringify(rows)
-  });
-}
+const getJobs = async (db) => {
+  
+    const result = await db.all("SELECT * from Jobs");
+    if (result.error) {
+      return result.error;
+    }
+  
+    return JSON.stringify(result.rows);
+};
 
-export default {
+module.exports = {
   getJobs
-}
+};
