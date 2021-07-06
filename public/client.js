@@ -12,13 +12,14 @@ fetch("/jobs", {})
   .then(response => {
   console.log(response)
     response.forEach(row => {
-      appendNewJob(`${row.id} - ${row.title}`);
+      appendNewJob(`${row.id} - ${row.title}`, row.description);
     });
   });
 
 // a helper function that creates a list item for a given dream
-const appendNewJob = dream => {
+const appendNewJob = (label, description) => {
+  // TODO Do something with the description
   const newListItem = document.createElement("li");
-  newListItem.innerText = dream;
+  newListItem.innerText = label;
   jobsList.appendChild(newListItem);
 };

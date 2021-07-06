@@ -4,6 +4,7 @@
 // init project
 const express = require("express");
 const bodyParser = require("body-parser");
+const handlers = require("./handlers.js")
 const app = express();
 const fs = require("fs");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -55,6 +56,7 @@ app.get("/", (request, response) => {
 
 // endpoint to get all the jobs in the database
 app.get("/jobs", (request, response) => {
+  handlers.get 
   db.all("SELECT * from Jobs", (err, rows) => {
     response.send(JSON.stringify(rows));
   });
