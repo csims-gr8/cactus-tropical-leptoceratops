@@ -23,7 +23,9 @@ const sqlite3 = require("sqlite3").verbose();
 const { open } = require("sqlite");
 
 let db;
+
 open({ filename: dbFile, driver: sqlite3.Database }).then(newDb => {
+  console.log('database opened');
   db = newDb;
   // if ./.data/sqlite.db does not exist, create it, otherwise print records to console
   db.serialize(() => {
@@ -59,28 +61,6 @@ app.get("/jobs", async (request, response) => {
   const jobsData = await handlers.getJobs(db);
   response.send(JSON.stringify(jobsData));
 });
-
-// app.post("/jobs", async (request, response) => {
-//   const newJob = {
-//     title: request.body.title,
-//     description: request.body.description,
-//     location: request.body.location
-//   }
-//   db.run(`INSERT INTO jobs(title, description, location) VALUES(?)`, function(error) {
-//   if error {
-//     return console.log(error)
-//     }
-//   }); 
-  
-//   const result = {success: true};
-//   response.send(JSON.stringify(result))
-//   })
-// })
-
-// helper function that prevents html/css/script malice
-const cleanseString = function(string) {
-  return string.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-};
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, () => {
