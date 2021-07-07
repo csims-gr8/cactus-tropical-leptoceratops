@@ -25,31 +25,24 @@ const { open } = require("sqlite");
 let db;
 
 open({ filename: dbFile, driver: sqlite3.Database }).then(newDb => {
-  console.log('database opened');
-  db = newDb;
-  // if ./.data/sqlite.db does not exist, create it, otherwise print records to console
-  db.serialize(() => {
-    if (!exists) {
-      db.run(
-        "CREATE TABLE Jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, location TEXT)"
-      );
-      console.log("New table Jobs created!");
+  console.log("database opened");
 
-      // insert starter jobs
-      db.serialize(() => {
-        db.run(
-          'INSERT INTO Jobs (title, description, location) VALUES ("Software Engineer", "Come write some code with us!", "Yardley, PA"), ("Product Manager", "Develop our product roadmap.", "Yardley, PA"), ("Sales Engineer", "Focus on the technical needs of our next customers.", "Yardley, PA")'
-        );
-      });
-    } else {
-      console.log('Database "Jobs" ready to go!');
-      db.each("SELECT * from Jobs", (err, row) => {
-        if (row) {
-          console.log(`record: ${row.title}`);
-        }
-      });
-    }
-  });
+  db = newDb;
+
+    db.run(
+      "DROP TABLE Jobs; CREATE TABLE Jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, location TEXT)"
+    );
+    console.log("New table Jobs created!");
+
+  //   // insert starter jobs
+  //   // );
+  //   console.log('Database "Jobs" ready to go!');
+  //   db.each("SELECT * from Jobs", (err, row) => {
+  //     if (row) {
+  //       console.log(`record: ${row.title}`);
+  //     }
+  //   });
+  // });
 });
 
 app.get("/", (request, response) => {
