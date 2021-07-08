@@ -1,13 +1,14 @@
 # Jobs app
 
-A baby app that holds some data about jobs. Some ideas about what to add:
+A baby app that holds some data about jobs. There are TODOs scattered around the app with ideas on things to add.
 
 - [] Add backend enpoint to create a new job
 - [] Add parameter to the list endpoint to filter the jobs returned
-- [] Show jobs in the UI
-- [] Add tests for the server
+- [] Show job descriptions in the UI
+- [] Improve UI appearance
+- [] Add tests for the handlers
 
-## About hello-sqlite
+## About hello-sqlite 
 
 A starter that has a database
 

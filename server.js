@@ -30,19 +30,19 @@ open({ filename: dbFile, driver: sqlite3.Database }).then(newDb => {
   db = newDb;
 
   if (!exists) {
-    console.log('creating new table')
+    console.log('creating new table');
+    // Delete .data/sqlite.db to reset data and rerun this process. Then 
+    // run 'refresh' to restart server.
     db.run(
       "CREATE TABLE Jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, location TEXT)"
     ).then((result) => {
       // Insert starter jobs
-      console.log("New table Jobs created!");
-      console.log(result)
       db.run(
         'INSERT INTO Jobs (title, description, location) VALUES ("Software Engineer", "Come write some code with us!", "Yardley, PA"), ("Product Manager", "Develop our product roadmap.", "Yardley, PA"), ("Sales Engineer", "Focus on the technical needs of our next customers.", "Yardley, PA")'
       );
     });
   } else {
-    
+    console.log('Existing job data...')
     db.each("SELECT * from Jobs", (err, row) => {
       if (row) {
         console.log(`record: ${row.title}`);

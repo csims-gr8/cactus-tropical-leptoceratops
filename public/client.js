@@ -10,7 +10,8 @@ const jobsList = document.getElementById("jobs-list");
 fetch("/jobs", {})
   .then(res => res.json())
   .then(response => {
-  console.log(response)
+    // TODO: Show an error if one is returned
+    console.log(response)
     response.forEach(row => {
       appendNewJob(`${row.id} - ${row.title}`, row.description);
     });
@@ -20,10 +21,7 @@ fetch("/jobs", {})
 const appendNewJob = (label, description) => {
   // TODO Do something with the description
   const newListItem = document.createElement("li");
-  const jobDescription = document.createElement("div");
   newListItem.innerText = label;
-  jobDescription.innerText = description;
   jobsList.appendChild(newListItem);
-  jobsList.appendChild(jobDescription);
 };
 
