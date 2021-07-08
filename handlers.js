@@ -1,4 +1,4 @@
-const getJobs = async db => {
+const getJobs = async (db, query) => {
   if (!db) {
     return { error: "no database!" };
   }
@@ -8,8 +8,7 @@ const getJobs = async db => {
   
   //array
   result.filter(job => {
-    
-    if
+    return job.title === 'Software Engineer'
   })
   
   if (result.error) {
