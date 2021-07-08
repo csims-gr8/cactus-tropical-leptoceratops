@@ -5,6 +5,13 @@ const getJobs = async db => {
   
   // TODO Add filter
   const result = await db.all("SELECT * from Jobs", []);
+  
+  //array
+  result.filter(job => {
+    
+    if
+  })
+  
   if (result.error) {
     return { error: result.error };
   }
@@ -14,6 +21,11 @@ const getJobs = async db => {
 
 const saveJob = async db => {
   // TODO
+  const result = await db.all("SELECT * from Jobs", []);
+  
+  if(result.error) {
+    return { error: result.error}
+  }
 };
 
 module.exports = {
