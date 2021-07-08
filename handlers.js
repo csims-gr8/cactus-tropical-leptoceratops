@@ -7,15 +7,14 @@ const getJobs = async (db, query) => {
   const result = await db.all("SELECT * from Jobs", []);
   
   //array
-  result.filter(job => {
+  return result.filter(job => {
     return job.title === 'Software Engineer'
-  })
+  }).map(job => job)
   
   if (result.error) {
     return { error: result.error };
   }
 
-  return result;
 };
 
 const saveJob = async db => {
