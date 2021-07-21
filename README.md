@@ -1,14 +1,23 @@
 # Jobs app
 
-A baby app that holds some data about jobs. There are TODOs scattered around the app with ideas on things to add.
+A baby app that holds some data about jobs. There are TODOs scattered around the app with ideas for things to add.
 
-- [] Add backend enpoint to create a new job
-- [] Add parameter to the list endpoint to filter the jobs returned
-- [] Show job descriptions in the UI
-- [] Improve UI appearance
-- [] Add tests for the handlers
+- [] Add parameter to the list endpoint to filter the jobs returned (handlers.js)
+- [] Show job descriptions in the UI (public/client.js)
+- [] Improve UI appearance (public/client.js, views/index.html)
+- [] Add ability to filter jobs in the UI (public/client.js, views/index.html)
+- [] Add backend endpoint to create a new job (handlers.js, server.js)
+- [] Add tests for the handlers (handlers.spec.js)
 
-## About hello-sqlite 
+## Database
+
+The job database (sqlite) is initialized in server.js. The table schema:
+
+```sql
+CREATE TABLE Jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, location TEXT)
+```
+
+## About hello-sqlite (glitch starter app)
 
 A starter that has a database
 
@@ -18,7 +27,7 @@ A starter that has a database
 
 On the front-end,
 
-- Edit `views/index.html`,  `public/style.css`, and `public/client.js`
+- Edit `views/index.html`, `public/style.css`, and `public/client.js`
 - Drag in `assets`, like images or music, to add them to your project
 
 On the back-end,
@@ -28,7 +37,6 @@ On the back-end,
 - Safely store app secrets in `.env` (nobody can see this but you and people you invite)
 
 Click `Show` in the header to see your app live. Updates to your code will instantly deploy.
-
 
 ## Made by [Glitch](https://glitch.com/)
 
