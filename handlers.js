@@ -14,7 +14,7 @@ const getJobs = async (db, query) => {
 };
 
 const saveJob = async db => {
-  // TODO
+  // TODO: mark a job as saved in the database (need to add a new column to the SQL table)
 };
 
 module.exports = {

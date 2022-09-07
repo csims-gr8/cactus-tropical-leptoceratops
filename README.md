@@ -6,7 +6,7 @@ A baby app that holds some data about jobs. There are TODOs scattered around the
 - [] Show job descriptions in the UI (public/client.js)
 - [] Improve UI appearance (public/client.js, views/index.html)
 - [] Add ability to filter jobs in the UI (public/client.js, views/index.html)
-- [] Add backend endpoint to create a new job (handlers.js, server.js)
+- [] Add backend endpoint to save a job for later review (handlers.js, server.js)
 - [] Add tests for the handlers (handlers.spec.js)
 
 ## Database
@@ -17,7 +17,9 @@ The job database (sqlite) is initialized in server.js. The table schema:
 CREATE TABLE Jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, location TEXT)
 ```
 
-## About hello-sqlite (glitch starter app)
+Documentation for the `sqlite3` npm package [on github](https://github.com/TryGhost/node-sqlite3/wiki/API).
+
+## About hello-sqlite (starter app from Glitch)
 
 A starter that has a database
 
