@@ -38,7 +38,12 @@ open({ filename: dbFile, driver: sqlite3.Database }).then(newDb => {
     ).then((result) => {
       // Insert starter jobs
       db.run(
-        'INSERT INTO Jobs (title, description, location) VALUES ("Software Engineer", "Come write some code with us!", "Yardley, PA"), ("Product Manager", "Develop our product roadmap.", "Yardley, PA"), ("Sales Engineer", "Focus on the technical needs of our next customers.", "Yardley, PA")'
+        `INSERT INTO Jobs 
+        (title, description, location) 
+        VALUES 
+        ("Software Engineer", "Come write some code with us!", "Yardley, PA"),
+        ("Product Manager", "Develop our product roadmap.", "Yardley, PA"), 
+        ("Sales Engineer", "Focus on the technical needs of our next customers.", "Yardley, PA")`
       );
     });
   } else {
