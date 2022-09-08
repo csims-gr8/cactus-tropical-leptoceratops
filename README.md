@@ -2,7 +2,7 @@
 
 A baby app that holds some data about jobs. There are TODOs scattered around the app with ideas for things to add.
 
-- [] Add parameter to the list endpoint to filter the jobs returned (handlers.js)
+- [] Add parameter to the getJobs function to filter the jobs returned (handlers.js)
 - [] Show job descriptions in the UI (public/client.js)
 - [] Improve UI appearance (public/client.js, views/index.html)
 - [] Add ability to filter jobs in the UI (public/client.js, views/index.html)
