@@ -5,7 +5,7 @@ const getJobs = async (db, query) => {
   
   // TODO Add filter
   const result = await db.all("SELECT * from Jobs", []);
-  
+  console.log(result);
   if (result.error) {
     return { error: result.error };
   }
