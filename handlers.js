@@ -20,6 +20,7 @@ const getJobs = async (db, search) => {
 };
 
 const saveJob = async (db, id) => {
+  const updateSql = `UPDATE Jobs SET saved = !saved WHERE id = ${id}`;
   
 };
 
