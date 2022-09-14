@@ -7,10 +7,9 @@ const getJobs = async (db, search) => {
     ? search.toLowerCase()
     : undefined;
   let sqlSearch = lowerSearch
-    ? `SELECT * FROM Jobs WHERE LOWER(title) LIKE ${lowerSearch} OR LOWER(description) LIKE ${lowerSearch} OR LOWER(location) LIKE ${lowerSearch}`
+    ? `SELECT * FROM Jobs WHERE LOWER(title) LIKE '%${lowerSearch}%' OR LOWER(description) LIKE '%${lowerSearch}%' OR LOWER(location) LIKE '%${lowerSearch}%'`
     : 'SELECT * FROM Jobs';
 
- console.log(sqlSearch);
   // TODO Add filter
   const result = await db.all(sqlSearch, []);
   if (result.error) {
