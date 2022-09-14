@@ -25,19 +25,21 @@ findJobs();
 
 // a helper function that creates a list item for a given job
 const appendNewJob = (id, label, description) => {
+  
   let check = document.createElement('input');
   check.type = 'checkbox';
   check.name = 'save';
   check.id = `select${id}`;
   check.value = id;
-  jobsList.appendChild(check);  
+  jobsList.appendChild(check); 
   
   const newListItem = document.createElement("li");
   newListItem.innerText = `${label}`;
   jobsList.appendChild(newListItem);
+  
   const descriptionItem = document.createElement("text");
   descriptionItem.innerText = `${description}`;
-  jobsList.appendChild(descriptionItem);
+  jobsList.appendChild(descriptionItem);     
 };
 
 const removeChildren = (parent) => {
