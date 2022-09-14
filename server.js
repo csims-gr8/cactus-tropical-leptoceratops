@@ -79,7 +79,7 @@ app.post("/jobs/:id", async (req, res) => {
   const id = req.params.id;
   const dbResp = await handlers.saveJob(db, id);
   // check for errors
-  response.statusCode(200).send();
+  res.statusCode(200).send();
 });
 
 // listen for requests :)
