@@ -34,16 +34,16 @@ open({ filename: dbFile, driver: sqlite3.Database }).then(newDb => {
     // Delete .data/sqlite.db to reset data and rerun this process. Then 
     // run 'refresh' to restart server.
     db.run(
-      "CREATE TABLE Jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, location TEXT, saved )"
+      "CREATE TABLE Jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, location TEXT, saved BOOLEAN NOT NULL CHECK (saved IN (0, 1))"
     ).then((result) => {
       // Insert starter jobs
       db.run(
         `INSERT INTO Jobs 
-        (title, description, location) 
+        (title, description, location, saved) 
         VALUES 
-        ("Software Engineer", "Come write some code with us!", "Yardley, PA"),
-        ("Product Manager", "Develop our product roadmap.", "Yardley, PA"), 
-        ("Sales Engineer", "Focus on the technical needs of our next customers.", "Yardley, PA")`
+        ("Software Engineer", "Come write some code with us!", "Yardley, PA", 0),
+        ("Product Manager", "Develop our product roadmap.", "Yardley, PA", 0), 
+        ("Sales Engineer", "Focus on the technical needs of our next customers.", "Yardley, PA", 0)`
       );
     });
   } else {

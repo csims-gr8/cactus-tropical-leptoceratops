@@ -20,7 +20,7 @@ fetch("/jobs", {})
 const appendNewJob = (label, description) => {
   // TODO Do something with the description
   const newListItem = document.createElement("li");
-  newListItem.innerText = label;
+  newListItem.innerText = `${label} - ${description}`;
   jobsList.appendChild(newListItem);
 };
 
