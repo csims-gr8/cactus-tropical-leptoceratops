@@ -63,8 +63,16 @@ button:active {
 }
 
 li {
-  margin-bottom: 5px;
+  margin-top: 20px;
+  margin-bottom: 8px;
   margin-left:  20px;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+text {
+  font-size: 15px;
+  margin-left: 50px;
 }
 
 footer {
