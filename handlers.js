@@ -2,13 +2,15 @@ const getJobs = async (db, search) => {
   if (!db) {
     return { error: "no database!" };
   }
-  
-  // let sqlSearch = 'SELECT * FROM Jobs';
-  let sqlSearch = search 
-    ? `SELECT * FROM Jobs WHERE LOWER(title) LIKE LOWER(search) OR LOWER(description) LIKE LOWER(search) OR LOWER(location) LIKE LOWER(search)`
+
+  let lowerSearch = search
+    ? search.toLowerCase()
+    : undefined;
+  let sqlSearch = lowerSearch
+    ? `SELECT * FROM Jobs WHERE LOWER(title) LIKE ${lowerSearch} OR LOWER(description) LIKE ${lowerSearch} OR LOWER(location) LIKE ${lowerSearch}`
     : 'SELECT * FROM Jobs';
 
-//  console.log(sqlSearch);
+ console.log(sqlSearch);
   // TODO Add filter
   const result = await db.all(sqlSearch, []);
   if (result.error) {

@@ -2,7 +2,11 @@
 // run by the browser each time your view template referencing it is loaded
 
 const findJobs = (search) => {
-  fetch("/jobs", {})
+  const path = search
+    ? `/jobs?search=${search}`
+    : '/jobs';
+    
+  fetch(path, {})
     .then(res => res.json())
     .then(response => {
       // TODO: Show an error if one is returned      
@@ -30,20 +34,9 @@ const appendNewJob = (label, description) => {
   jobsList.appendChild(descriptionItem);
 };
 
-document.addEventListener('keup', function(event) {
+document.addEventListener('keyup', function(event) {
   const searchInput = document.getElementById("searchInput");
-  console.log(searchInput.value);
-  if (event.code == 13) {
-    console.log('maybe');
+  if (event.keyCode === 13) {
+    findJobs(searchInput.value);
   }
 });
-
-// searchInput.on('keyDown', e => {
-//   console.log(searchInput.value);
-//   console.log('123');
-//   console.log('here');
-//   if (e.keyCode == 13) {
-//     findJobs($("#searchInput").value);
-//   }  
-// });
-
