@@ -63,7 +63,11 @@ app.get("/", (request, response) => {
 
 // endpoint to get all the jobs in the database
 app.get("/jobs", async (request, response) => {
-  let search = request.query?.search;
+  let search;
+  if (request.query && request.query.search) {
+    search = request.query.search;
+  }
+  // let search = request.query?.search;
   const jobsData = await handlers.getJobs(db, search);
   response.send(JSON.stringify(jobsData));
 });

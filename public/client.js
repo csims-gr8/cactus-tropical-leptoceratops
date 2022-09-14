@@ -30,7 +30,9 @@ const appendNewJob = (label, description) => {
   jobsList.appendChild(descriptionItem);
 };
 
+const searchInput = document.getElementById('searchInput');
 $("#searchInput").keydown(function(e){
+  console.log('here');
   if (e.keyCode == 13) {
     findJobs($("#searchInput").value);
   }
