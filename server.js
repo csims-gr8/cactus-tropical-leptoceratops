@@ -34,16 +34,16 @@ open({ filename: dbFile, driver: sqlite3.Database }).then(newDb => {
     // Delete .data/sqlite.db to reset data and rerun this process. Then 
     // run 'refresh' to restart server.
     db.run(
-      "CREATE TABLE Jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, location TEXT)"
+      "CREATE TABLE Jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, location TEXT, saved BOOLEAN NOT NULL CHECK (saved IN (0, 1))"
     ).then((result) => {
       // Insert starter jobs
       db.run(
         `INSERT INTO Jobs 
-        (title, description, location) 
+        (title, description, location, saved) 
         VALUES 
-        ("Software Engineer", "Come write some code with us!", "Yardley, PA"),
-        ("Product Manager", "Develop our product roadmap.", "Yardley, PA"), 
-        ("Sales Engineer", "Focus on the technical needs of our next customers.", "Yardley, PA")`
+        ("Software Engineer", "Come write some code with us!", "Yardley, PA", 0),
+        ("Product Manager", "Develop our product roadmap.", "Yardley, PA", 1), 
+        ("Sales Engineer", "Focus on the technical needs of our next customers.", "Yardley, PA", 0)`
       );
     });
   } else {
@@ -63,8 +63,23 @@ app.get("/", (request, response) => {
 
 // endpoint to get all the jobs in the database
 app.get("/jobs", async (request, response) => {
-  const jobsData = await handlers.getJobs(db);
+  let search;
+  if (request.query && request.query.search) {
+    search = request.query.search;
+  }
+  // let search = request.query?.search;
+  const jobsData = await handlers.getJobs(db, search);
   response.send(JSON.stringify(jobsData));
+});
+
+// add error handling
+
+// add post jobs to save
+app.post("/jobs/:id", async (req, res) => {
+  const id = req.params.id;
+  const dbResp = await handlers.saveJob(db, id);
+  // check for errors
+  res.statusCode(200).send();
 });
 
 // listen for requests :)

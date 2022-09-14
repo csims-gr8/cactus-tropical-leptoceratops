@@ -1,11 +1,17 @@
-const getJobs = async (db, query) => {
+const getJobs = async (db, search) => {
   if (!db) {
     return { error: "no database!" };
   }
-  
+
+  let lowerSearch = search
+    ? search.toLowerCase()
+    : undefined;
+  let sqlSearch = lowerSearch
+    ? `SELECT * FROM Jobs WHERE LOWER(title) LIKE '%${lowerSearch}%' OR LOWER(description) LIKE '%${lowerSearch}%' OR LOWER(location) LIKE '%${lowerSearch}%'`
+    : 'SELECT * FROM Jobs';
+
   // TODO Add filter
-  const result = await db.all("SELECT * from Jobs", []);
-  console.log(result);
+  const result = await db.all(sqlSearch, []);
   if (result.error) {
     return { error: result.error };
   }
@@ -13,8 +19,9 @@ const getJobs = async (db, query) => {
   return result;
 };
 
-const saveJob = async db => {
-  // TODO: mark a job as saved in the database (need to add a new column to the SQL table)
+const saveJob = async (db, id) => {
+  const updateSql = `UPDATE Jobs SET saved = !saved WHERE id = ${id}`;
+  // is that db.execute?  need to look up command
 };
 
 module.exports = {
