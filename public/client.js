@@ -30,11 +30,20 @@ const appendNewJob = (label, description) => {
   jobsList.appendChild(descriptionItem);
 };
 
-const searchInput = document.getElementById('searchInput');
-$("#searchInput").keydown(function(e){
-  console.log('here');
-  if (e.keyCode == 13) {
-    findJobs($("#searchInput").value);
+document.addEventListener('keup', function(event) {
+  const searchInput = document.getElementById("searchInput");
+  console.log(searchInput.value);
+  if (event.code == 13) {
+    console.log('maybe');
   }
 });
+
+// searchInput.on('keyDown', e => {
+//   console.log(searchInput.value);
+//   console.log('123');
+//   console.log('here');
+//   if (e.keyCode == 13) {
+//     findJobs($("#searchInput").value);
+//   }  
+// });
 

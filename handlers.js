@@ -8,7 +8,7 @@ const getJobs = async (db, search) => {
     ? `SELECT * FROM Jobs WHERE LOWER(title) LIKE LOWER(search) OR LOWER(description) LIKE LOWER(search) OR LOWER(location) LIKE LOWER(search)`
     : 'SELECT * FROM Jobs';
 
-  console.log(sqlSearch);
+//  console.log(sqlSearch);
   // TODO Add filter
   const result = await db.all(sqlSearch, []);
   if (result.error) {
