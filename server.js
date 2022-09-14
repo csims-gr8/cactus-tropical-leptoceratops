@@ -34,7 +34,7 @@ open({ filename: dbFile, driver: sqlite3.Database }).then(newDb => {
     // Delete .data/sqlite.db to reset data and rerun this process. Then 
     // run 'refresh' to restart server.
     db.run(
-      "CREATE TABLE Jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, location TEXT)"
+      "CREATE TABLE Jobs (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT, description TEXT, location TEXT, saved )"
     ).then((result) => {
       // Insert starter jobs
       db.run(
