@@ -35,6 +35,7 @@ const appendNewJob = (row) => {
     
   console.log(row.saved);
   const saveButton = document.createElement('button');
+  saveButton.id = `button${row.id}`;
   saveButton.appendChild(document.createTextNode(row.saved === 0 ? 'Add to Saved List' : 'Remove from Saved List'));
   jobsList.appendChild(saveButton);
 };
@@ -51,5 +52,4 @@ document.addEventListener('keyup', function(event) {
   findJobs(searchInput.value);
 });
 
-// add save checkbox for id for save
-// call post /jobs/:id
+// add click handler for save button, parse id, call post with id; 
