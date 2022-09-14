@@ -3,6 +3,10 @@ const getJobs = async (db, query) => {
     return { error: "no database!" };
   }
   
+  let sqlSearch;
+  if (query) {
+    sqlSearch = `SELECT * FROM Jobs WHERE `
+  }
   // TODO Add filter
   const result = await db.all("SELECT * from Jobs", []);
   console.log(result);

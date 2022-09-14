@@ -5,7 +5,7 @@ const findJobs = (search) => {
   fetch("/jobs", {})
     .then(res => res.json())
     .then(response => {
-      // TODO: Show an error if one is returned
+      // TODO: Show an error if one is returned      
       console.log(response)
       response.forEach(row => {
         appendNewJob(`${row.id} - ${row.title}`, row.description);
@@ -32,7 +32,7 @@ const appendNewJob = (label, description) => {
 
 $("#searchInput").keydown(function(e){
   if (e.keyCode == 13) {
-    findJobs($("#searchInput").innerText));
+    findJobs($("#searchInput").value);
   }
 });
 
