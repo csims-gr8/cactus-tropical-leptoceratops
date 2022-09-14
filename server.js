@@ -72,6 +72,16 @@ app.get("/jobs", async (request, response) => {
   response.send(JSON.stringify(jobsData));
 });
 
+// add error handling
+
+// add post jobs to save
+app.post("/jobs/:id", async (req, res) => {
+  const id = req.params.id;
+  const dbResp = await handlers.saveJob(db, id);
+  // check for errors
+  response.statusCode(200).send();
+});
+
 // listen for requests :)
 var listener = app.listen(process.env.PORT, () => {
   console.log(`Your app is listening on port ${listener.address().port}`);

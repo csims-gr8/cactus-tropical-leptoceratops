@@ -44,3 +44,6 @@ document.addEventListener('keyup', function(event) {
   const searchInput = document.getElementById("searchInput");
   findJobs(searchInput.value);
 });
+
+// add save checkbox for id for save
+// call post /jobs/:id
