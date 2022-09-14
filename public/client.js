@@ -12,7 +12,7 @@ const findJobs = (search) => {
       // TODO: Show an error if one is returned      
       console.log(response)
       response.forEach(row => {
-        appendNewJob(row.id, `${row.id} - ${row.title}`, row.description);
+        appendNewJob(row);
       });
     });  
 }
@@ -24,22 +24,19 @@ findJobs();
 // request the jobs from our app's sqlite database
 
 // a helper function that creates a list item for a given job
-const appendNewJob = (id, label, description) => {
-  
-  let check = document.createElement('input');
-  check.type = 'checkbox';
-  check.name = 'save';
-  check.id = `select${id}`;
-  check.value = id;
-  jobsList.appendChild(check); 
-  
+const appendNewJob = (row) => {  
   const newListItem = document.createElement("li");
-  newListItem.innerText = `${label}`;
+  newListItem.innerText = `${row.id} - ${row.title}`;
   jobsList.appendChild(newListItem);
   
   const descriptionItem = document.createElement("text");
-  descriptionItem.innerText = `${description}`;
-  jobsList.appendChild(descriptionItem);     
+  descriptionItem.innerText = `${row.description}`;
+  jobsList.appendChild(descriptionItem);
+    
+  console.log(row.saved);
+  const saveButton = document.createElement('button');
+  saveButton.appendChild(document.createTextNode(row.saved === 0 ? 'Add to Saved List' : 'Remove from Saved List'));
+  jobsList.appendChild(saveButton);
 };
 
 const removeChildren = (parent) => {

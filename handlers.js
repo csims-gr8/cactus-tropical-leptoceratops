@@ -15,6 +15,7 @@ const getJobs = async (db, search) => {
   if (result.error) {
     return { error: result.error };
   }
+  console.log(resu)
 
   return result;
 };

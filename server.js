@@ -42,7 +42,7 @@ open({ filename: dbFile, driver: sqlite3.Database }).then(newDb => {
         (title, description, location, saved) 
         VALUES 
         ("Software Engineer", "Come write some code with us!", "Yardley, PA", 0),
-        ("Product Manager", "Develop our product roadmap.", "Yardley, PA", 0), 
+        ("Product Manager", "Develop our product roadmap.", "Yardley, PA", 1), 
         ("Sales Engineer", "Focus on the technical needs of our next customers.", "Yardley, PA", 0)`
       );
     });
