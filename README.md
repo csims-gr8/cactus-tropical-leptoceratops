@@ -9,6 +9,10 @@ A baby app that holds some data about jobs. There are TODOs scattered around the
 - [] Add backend endpoint to save a job for later review (handlers.js, server.js)
 - [] Add tests for the handlers (handlers.spec.js)
 
+### UI To Do List
+- [] Create a list of jobs
+- [] When selected, show description of respective job
+
 ## Database
 
 The job database (sqlite) is initialized in server.js. The table schema:
