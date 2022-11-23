@@ -25,14 +25,22 @@
   <body>
     <header>
       <h1>Here are some jobs we have available</h1>
-      <div id="jobs-list"></div>
-      <div class="dropdown">
-        <button onclick="jobHandler()" class="dropbtn" >Availble Jobs</button>
-        <div id="jobs" class="dropdown-content">
-          <div id="1" onclick="jobSelectedHandler(1)">Software Engineer</div>
-          <div id="2">Product Manager</div>
-          <div id="3">Sales Engineer</div>
+      <div class="dropdown" onclick="jobSelectionHandler()">
+        <div class="select">
+          <span class="selected">Available Jobs</span>
+          <div class="caret"></div>
         </div>
+        <div id="jobs" class="menu">
+          <li id="1" class="active" onclick="jobSelectedHandler(1)">Software Engineer</li>
+          <li id="2" onclick="jobSelectedHandler(2)">Product Manager</li>
+          <li id="3" onclick="jobSelectedHandler(3)">Sales Engineer</li>
+        </div>
+      </div>
+      <div id="job-information">
+        <h4 id="description-header">Job Description</h4>
+        <p id="description"></p>
+        <h4>Job Location</h4>
+        <p id="job-location"></p>
       </div>
     </header>
   </body>
